@@ -1,8 +1,17 @@
 <template>
   <div>
     <v-toolbar class="mb-5 mt-2 transparent" flat>
-      <v-toolbar-title></v-toolbar-title>
-      <div class="mb-2">Confidence</div>
+      <v-toolbar-title> </v-toolbar-title>
+        <v-spacer></v-spacer>
+      <div class="mb-2">
+        <v-btn icon>
+          <v-icon>mdi-grid-large</v-icon>
+        </v-btn>
+        <v-btn icon>
+            <v-icon>mdi-view-agenda-outline</v-icon>
+        </v-btn>
+        Confidence
+      </div>
       <v-range-slider
         v-model="range"
         hide-details
