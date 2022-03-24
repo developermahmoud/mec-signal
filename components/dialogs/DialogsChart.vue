@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-dialog v-model="dialog" transition="dialog-top-transition">
+    <v-dialog v-model="dialog" transition="dialog-top-transition" persistent>
       <v-card>
         <v-card-title></v-card-title>
         <v-card-text>
