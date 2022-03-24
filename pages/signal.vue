@@ -1,14 +1,12 @@
 <template>
   <div>
     <v-toolbar class="mb-5 mt-2 transparent" flat>
-      <v-toolbar-title> </v-toolbar-title>
-        <v-spacer></v-spacer>
       <div class="mb-2">
         <v-btn icon>
           <v-icon>mdi-grid-large</v-icon>
         </v-btn>
         <v-btn icon>
-            <v-icon>mdi-view-agenda-outline</v-icon>
+          <v-icon>mdi-view-agenda-outline</v-icon>
         </v-btn>
         Confidence
       </div>
@@ -27,6 +25,7 @@
         dense
         hide-details
         placeholder="Class"
+        style="width: 150px"
         single-line
       ></v-select>
       <v-select
@@ -34,12 +33,19 @@
         filled
         dense
         hide-details
+        style="width: 150px"
         placeholder="Status"
       ></v-select>
-      <v-select filled dense hide-details placeholder="Language"></v-select>
+      <v-select
+        style="width: 100px"
+        filled
+        dense
+        hide-details
+        placeholder="Language"
+      ></v-select>
     </v-toolbar>
     <v-row>
-      <v-col cols="2" v-for="i in 18" :key="i">
+      <v-col cols="3" v-for="i in 18" :key="i">
         <v-card outlined flat :class="`${i % 2 == 0 ? 'bgGreen' : 'bgRed'}`">
           <v-card-title>
             <IconsBitcoin />
@@ -70,20 +76,37 @@
             </div>
           </v-card-text>
           <v-card-actions class="justify-center">
-            <v-btn large outlined width="100">{{
-              i % 2 == 0 ? "Sell" : "Buy"
-            }}</v-btn>
+            <v-btn
+              large
+              @click="
+                chartDialog = true;
+                operation = i % 2 == 0 ? 'Buy' : 'Sell';
+              "
+              outlined
+              width="100"
+              >{{ i % 2 == 0 ? "Buy" : "Sell" }}</v-btn
+            >
           </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
+    <dialogs-chart
+      v-if="chartDialog"
+      :dialog="chartDialog"
+      :operation="operation"
+      @close-dialog="chartDialog = false"
+    />
   </div>
 </template>
 
 <script>
+import DialogsChart from "../components/dialogs/DialogsChart.vue";
 export default {
+  components: { DialogsChart },
   data() {
     return {
+      chartDialog: false,
+      operation: "buy",
       range: [-20, 70],
     };
   },
