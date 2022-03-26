@@ -1,7 +1,7 @@
 <template>
-  <v-app dark>
+  <v-app dark class="background">
     <navbar />
-    <v-main>
+    <v-main class="background">
       <v-container>
         <Nuxt />
       </v-container>
@@ -16,7 +16,7 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-footer app class="justify-center">
+    <v-footer app class="justify-center secondaryBackground">
       <div>
         © Copyright {{ new Date().getFullYear() }} Everything Trading. All
         rights reserved

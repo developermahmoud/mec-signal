@@ -24,8 +24,10 @@
         filled
         dense
         hide-details
+        :menu-props="{ bottom: true, offsetY: true }"
         placeholder="Class"
         style="width: 150px"
+        :items="['FX', 'Commodities', 'Indices', 'Crypto', 'Stocks']"
         single-line
       ></v-select>
       <v-select
@@ -33,15 +35,17 @@
         filled
         dense
         hide-details
+        :menu-props="{ bottom: true, offsetY: true }"
+        :items="[
+          'Expired',
+          'Sell Limit',
+          'Sell Stop',
+          'Buy Limit',
+          'Buy stop',
+          'Live Trade',
+        ]"
         style="width: 150px"
         placeholder="Status"
-      ></v-select>
-      <v-select
-        style="width: 100px"
-        filled
-        dense
-        hide-details
-        placeholder="Language"
       ></v-select>
     </v-toolbar>
     <v-row>
@@ -50,7 +54,7 @@
           <v-card-title>
             <IconsBitcoin />
             <v-spacer></v-spacer>
-            <span class="body-2"> Buy Limit</span>
+            <span class="body-2"> {{ i % 2 == 0 ? "Buy" : "Sell" }} Limit</span>
           </v-card-title>
           <v-card-text class="white--text">
             <h2 class="text-center">Ethereum</h2>
@@ -103,6 +107,15 @@
 import DialogsChart from "../components/dialogs/DialogsChart.vue";
 export default {
   components: { DialogsChart },
+  head() {
+    return {
+      script: [
+        {
+          src: "https://s3.tradingview.com/tv.js",
+        },
+      ],
+    };
+  },
   data() {
     return {
       chartDialog: false,
